@@ -18,6 +18,10 @@ export default function LoginPage() {
     setErrorMessage("");
     try {
       console.log("Login avec:", formData);
+
+      // Ajout du log pour vérifier la redirection
+      console.log("✅ Soumission validée, tentative de redirection vers /coach");
+
       router.push("/coach");
     } catch (error) {
       console.error("Erreur de connexion:", error);
@@ -31,7 +35,7 @@ export default function LoginPage() {
         <h1 className="text-2xl font-bold mb-2 text-center text-[#0B1231]">Connexion !</h1>
 
         <p className="text-center mb-4 text-sm text-gray-700">
-          Pas encore de compte ?{' '}
+          Pas encore de compte ?{" "}
           <a href="/signup" className="text-green-600 font-medium hover:underline">
             Créer un compte !
           </a>
@@ -41,7 +45,9 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Adresse e-mail</label>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              Adresse e-mail
+            </label>
             <input
               type="email"
               name="email"
@@ -54,7 +60,9 @@ export default function LoginPage() {
           </div>
 
           <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Mot de passe</label>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              Mot de passe
+            </label>
             <input
               type="password"
               name="password"

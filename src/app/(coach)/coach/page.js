@@ -1,8 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import AiSessionModal from "@/components/coach/ExerciceCard";
 
 export default function CoachDashboardPage() {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-100 text-gray-800 p-6">
       <header className="mb-8">
@@ -53,11 +56,16 @@ export default function CoachDashboardPage() {
         <div className="bg-white rounded-lg shadow p-5">
           <h2 className="text-xl font-semibold mb-4">Suggestion IA</h2>
           <p className="text-sm mb-2">💡 Basé sur la forme actuelle, pensez à travailler le pressing haut.</p>
-          <button className="mt-2 text-sm bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">
+          <button
+            onClick={() => setShowModal(true)}
+            className="mt-2 text-sm bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded"
+          >
             Générer une séance adaptée
           </button>
         </div>
       </div>
+
+      {showModal && <AiSessionModal onClose={() => setShowModal(false)} />}
     </div>
   );
 }
