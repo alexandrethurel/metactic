@@ -1,6 +1,6 @@
 // api/guest/auth.js
 
-import users from "@/lib/mocks/users";
+import { users } from "@/lib/mocks/users";
 
 export async function simulateLogin(email, password) {
   const user = users.find((u) => u.email === email && u.password_hash === password);

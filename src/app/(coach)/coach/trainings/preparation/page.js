@@ -67,7 +67,7 @@ export default function TrainingPreparationPage() {
   };
 
   const handleAddExercise = ({ name, description, duration_min }) => {
-    if (title.trim()) {
+    if (name.trim()) {
       setExercises([
         ...exercises,
         { id: `new-${Date.now()}`, name, description, duration_min }

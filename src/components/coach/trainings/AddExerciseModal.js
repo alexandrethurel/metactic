@@ -3,12 +3,12 @@ import { useState } from "react";
 import Modal from "../ui/Modal";
 
 export default function AddExerciseModal({ onAdd, onClose }) {
-  const [title, setTitle] = useState("");
+  const [name, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [duration, setDuration] = useState("");
+  const [duration_min, setDuration] = useState("");
 
   const handleAdd = () => {
-    if (title.trim()) {
+    if (name.trim()) {
       onAdd({ name, description, duration_min });
       setTitle("");
       setDescription("");
@@ -21,7 +21,7 @@ export default function AddExerciseModal({ onAdd, onClose }) {
       <input
         type="text"
         placeholder="Titre de l'exercice"
-        value={title}
+        value={name}
         onChange={(e) => setTitle(e.target.value)}
         className="w-full border px-3 py-2 rounded text-sm mb-3"
       />
@@ -35,7 +35,7 @@ export default function AddExerciseModal({ onAdd, onClose }) {
       <input
         type="number"
         placeholder="Durée (min)"
-        value={duration}
+        value={duration_min}
         onChange={(e) => setDuration(e.target.value)}
         className="w-full border px-3 py-2 rounded text-sm mb-4"
       />
