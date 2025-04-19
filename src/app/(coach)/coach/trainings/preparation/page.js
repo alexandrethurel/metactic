@@ -78,6 +78,8 @@ export default function TrainingPreparationPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 text-[#0B1231] p-6">
+    {/* TITRE 1 */}
+    <h2 className="text-xl font-bold mb-4"> Paramètres de la séance</h2>
      {/* TOP SECTION */}
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 
@@ -125,7 +127,7 @@ export default function TrainingPreparationPage() {
       {/* 📍 Lieu choisi */}
       <div className="bg-white p-4 rounded shadow">
         <h3 className="font-semibold flex items-center gap-2 mb-2">
-          <MapPin className="w-4 h-4" /> Lieu choisi
+          <MapPin className="w-4 h-4" /> Lieu d'entraînement
         </h3>
         <select
           value={location}
@@ -139,8 +141,10 @@ export default function TrainingPreparationPage() {
 
       </div>
 
-      {/* BOTTOM SECTION */}
+      {/* BOTTOM SECTION */}{/* TITRE 1 */}
+      <h2 className="text-xl font-bold mb-4"> Contenu de la séance</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
         {/* Séance du jour */}
         <div className="bg-white p-4 rounded shadow flex flex-col gap-4 min-h-[300px]">
           <h3 className="font-semibold flex items-center gap-2">

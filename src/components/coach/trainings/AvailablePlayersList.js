@@ -8,7 +8,17 @@ export default function AvailablePlayersSection() {
   useEffect(() => {
     const loadPlayers = async () => {
       const res = await fetchAvailablePlayersWithUserInfo();
-      setPlayers(res);
+
+      // Trie : gardiens d'abord
+      const sorted = [...res].sort((a, b) => {
+        const aIsGoalie = a.main_position.toLowerCase() === "goalkeeper";
+        const bIsGoalie = b.main_position.toLowerCase() === "goalkeeper";
+        if (aIsGoalie && !bIsGoalie) return -1;
+        if (!aIsGoalie && bIsGoalie) return 1;
+        return 0;
+      });
+
+      setPlayers(sorted);
     };
     loadPlayers();
   }, []);
