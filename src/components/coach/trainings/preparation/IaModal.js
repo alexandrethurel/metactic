@@ -1,5 +1,5 @@
 // components/coach/IaModal.jsx
-import Modal from "../ui/Modal";
+import Modal from "../../ui/Modal";
 
 export default function IaModal({ selected, onSelect, onAdd, onClose, options }) {
   return (

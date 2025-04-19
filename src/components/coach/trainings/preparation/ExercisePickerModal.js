@@ -30,7 +30,7 @@ export default function ExercisePickerModal({ selectedTypes, onConfirm, onClose 
   };
 
   return (
-    <Modal title="Sélectionner des exercices IA" onClose={onClose}>
+    <Modal title="Sélection intelligence d'exercices" onClose={onClose}>
       <div className="space-y-2 max-h-[300px] overflow-y-auto">
         {availableExercises.map((exo) => (
           <div

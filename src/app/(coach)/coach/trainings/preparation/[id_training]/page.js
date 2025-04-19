@@ -1,12 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import {
   Sparkles,
   CalendarDays,
   FileDown,
-  X,
-  Clock,
   MapPin,
   Plus,
   Users,
@@ -17,12 +14,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import dynamic from "next/dynamic";
 const Select = dynamic(() => import("react-select"), { ssr: false });
-import ExerciseCard from "@/components/coach/trainings/ExerciseCard";
-import AddExerciseModal from "@/components/coach/trainings/AddExerciseModal";
-import ExercisePickerModal from "@/components/coach/trainings/ExercisePickerModal";
-import InvitePlayersModal from "@/components/coach/trainings/InvitePlayersModal";
-import InviteConfirmationModal from "@/components/coach/trainings/InviteConfirmationModal";
-import AvailablePlayersList from "@/components/coach/trainings/AvailablePlayersList";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+
+import ExerciseCard from "@/components/coach/trainings/preparation/ExerciseCard";
+import AddExerciseModal from "@/components/coach/trainings/preparation/AddExerciseModal";
+import ExercisePickerModal from "@/components/coach/trainings/preparation/ExercisePickerModal";
+import InviteConfirmationModal from "@/components/coach/trainings/preparation/InviteConfirmationModal";
+import AvailablePlayersList from "@/components/coach/trainings/preparation/AvailablePlayersList";
+import { getTrainingById } from "@/lib/api/coach/trainings";
+import { fetchExerciseById } from "@/lib/api/coach/exercises";
 
 const mockWeather = {
   temperature: "17°C",
@@ -41,18 +42,53 @@ const iaThemes = [
 ].map((label) => ({ value: label, label }));
 
 export default function TrainingPreparationPage() {
-  const [exercises, setExercises] = useState([]);
-  const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
+  const { id_training } = useParams();
+  const [training, setTraining] = useState(undefined);
+  const [isLoading, setIsLoading] = useState(true);
   const [trainingDate, setTrainingDate] = useState(new Date());
   const [location, setLocation] = useState("Extérieur");
   const [selectedTypes, setSelectedTypes] = useState([]);
-  const handleDelete = (id) => {
-    setExercises(exercises.filter((e) => e.id !== id));
-  };
-  const [showPicker, setShowPicker] = useState(false); 
+  const [exercises, setExercises] = useState([]);
+  const [showAddExerciseModal, setShowAddExerciseModal] = useState(false);
+  const [showPicker, setShowPicker] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [hasInvitedPlayers, setHasInvitedPlayers] = useState(false);
 
+  useEffect(() => {
+    if (!id_training) return;
+  
+    const fetchData = async () => {
+      const data = await getTrainingById(id_training);
+      setTraining(data);
+  
+      if (data) {
+        setTrainingDate(new Date(data.date));
+        setLocation(data.location);
+        setSelectedTypes(data.tags.map((t) => ({ value: t, label: t })));
+  
+        const resolvedExercises = await Promise.all(
+          data.exercises.map(async (id) => {
+            try {
+              return await fetchExerciseById(id);
+            } catch (err) {
+              console.warn(`Exercice "${id}" introuvable.`);
+              return null;
+            }
+          })
+        );
+  
+        setExercises(resolvedExercises.filter(Boolean));
+      }
+  
+      setIsLoading(false);
+    };
+  
+    fetchData();
+  }, [id_training]);
+
+  const handleDelete = (id) => {
+    setExercises(exercises.filter((e) => e.id !== id));
+  };
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -62,120 +98,82 @@ export default function TrainingPreparationPage() {
     setExercises(reordered);
   };
 
-  const handleExportPDF = () => {
-    alert("Fonction d'export PDF en cours de développement.");
-  };
-
   const handleAddExercise = ({ name, description, duration_min }) => {
     if (name.trim()) {
       setExercises([
         ...exercises,
-        { id: `new-${Date.now()}`, name, description, duration_min }
+        { id: `new-${Date.now()}`, name, description, duration_min },
       ]);
       setShowAddExerciseModal(false);
     }
   };
 
+  if (isLoading) return <p className="p-6">Chargement...</p>;
+  if (!training) return <p className="p-6 text-red-600">Entraînement introuvable.</p>;
+
   return (
     <div className="min-h-screen bg-gray-100 text-[#0B1231] p-6">
-    {/* TITRE 1 */}
-    <h2 className="text-xl font-bold mb-4"> Paramètres de la séance</h2>
-     {/* TOP SECTION */}
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-
-      {/* 📅 Date & Heure */}
-      <div className="bg-white p-4 rounded shadow">
-        <h3 className="font-semibold flex items-center gap-2 mb-2">
-          <CalendarDays className="w-4 h-4" /> Date & Heure
-        </h3>
-        <DatePicker
-          selected={trainingDate}
-          onChange={setTrainingDate}
-          showTimeSelect
-          dateFormat="Pp"
-          timeFormat="HH:mm"
-          timeIntervals={15}
-          className="w-full border px-3 py-2 rounded"
-          placeholderText="Sélectionner date et heure"
-        />
-      </div>
-
-      {/* 🧠 Type de séance (multi) */}
-      <div className="bg-white p-4 rounded shadow">
-        <h3 className="font-semibold flex items-center gap-2 mb-2">
-          <Sparkles className="w-4 h-4" /> Type(s) de séance
-        </h3>
-
-        <Select
-          options={iaThemes}
-          value={selectedTypes}
-          onChange={setSelectedTypes}
-          isMulti
-          placeholder="Choisir les objectifs..."
-          className="text-sm"
-          classNamePrefix="select"
-          closeMenuOnSelect={false}
-        />
-
-        {/* Résumé sélectionné */}
-        {selectedTypes.length > 0 && (
-          <p className="mt-2 text-xs text-gray-500">
-            Objectifs sélectionnés : {selectedTypes.map((t) => t.label).join(", ")}
-          </p>
-        )}
-      </div>
-
-      {/* 📍 Lieu choisi */}
-      <div className="bg-white p-4 rounded shadow">
-        <h3 className="font-semibold flex items-center gap-2 mb-2">
-          <MapPin className="w-4 h-4" /> Lieu d'entraînement
-        </h3>
-        <select
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          className="w-full border px-2 py-1 rounded"
-        >
-          <option>Extérieur</option>
-          <option>Intérieur</option>
-        </select>
-      </div>
-
-      </div>
-
-      {/* BOTTOM SECTION */}{/* TITRE 1 */}
-      <h2 className="text-xl font-bold mb-4"> Contenu de la séance</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-      
-        {/* Séance du jour */}
-        <div className="bg-white p-4 rounded shadow flex flex-col gap-4 min-h-[300px]">
-          <h3 className="font-semibold flex items-center gap-2">
-            📝 Séance du jour
+      <h2 className="text-xl font-bold mb-4">Paramètres de la séance</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="bg-white p-4 rounded shadow">
+          <h3 className="font-semibold flex items-center gap-2 mb-2">
+            <CalendarDays className="w-4 h-4" /> Date & Heure
           </h3>
+          <DatePicker
+            selected={trainingDate}
+            onChange={setTrainingDate}
+            showTimeSelect
+            dateFormat="Pp"
+            timeFormat="HH:mm"
+            timeIntervals={15}
+            className="w-full border px-3 py-2 rounded"
+          />
+        </div>
+        <div className="bg-white p-4 rounded shadow">
+          <h3 className="font-semibold flex items-center gap-2 mb-2">
+            <Sparkles className="w-4 h-4" /> Type(s) de séance
+          </h3>
+          <Select
+            options={iaThemes}
+            value={selectedTypes}
+            onChange={setSelectedTypes}
+            isMulti
+            placeholder="Choisir les objectifs..."
+            className="text-sm"
+            classNamePrefix="select"
+            closeMenuOnSelect={false}
+          />
+        </div>
+        <div className="bg-white p-4 rounded shadow">
+          <h3 className="font-semibold flex items-center gap-2 mb-2">
+            <MapPin className="w-4 h-4" /> Lieu d'entraînement
+          </h3>
+          <select
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            className="w-full border px-2 py-1 rounded"
+          >
+            <option>Extérieur</option>
+            <option>Intérieur</option>
+          </select>
+        </div>
+      </div>
 
-          {/* Boutons en haut */}
+      <h2 className="text-xl font-bold mb-4">Contenu de la séance</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="bg-white p-4 rounded shadow flex flex-col gap-4 min-h-[300px]">
+          <h3 className="font-semibold flex items-center gap-2">📝 Séance du jour</h3>
           <div className="flex gap-2">
             <button
               onClick={() => setShowPicker(true)}
               disabled={selectedTypes.length === 0}
-              title={selectedTypes.length === 0 ? "Choisissez au moins un type de séance" : ""}
               className={`flex-1 py-2 px-4 rounded text-sm flex items-center justify-center gap-2 transition
                 ${selectedTypes.length === 0
                   ? "bg-gray-200 text-gray-400 cursor-not-allowed"
                   : "bg-green-600 text-white hover:bg-green-700"}`}
             >
-              {selectedTypes.length === 0 ? (
-                <>
-                  <span className="text-lg">🔒</span>
-                  <span className="text-sm">Générer avec IA</span>
-                </>
-              ) : (
-                <>
-                  <Sparkles className="w-4 h-4" />
-                  <span className="text-sm">Générer avec IA</span>
-                </>
-              )}
+              {selectedTypes.length === 0 ? "🔒 Proposer des exercices" : <><Sparkles className="w-4 h-4" /> Proposer des exercices</>}
             </button>
-
             <button
               onClick={() => setShowAddExerciseModal(true)}
               className="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 text-sm flex items-center justify-center gap-2"
@@ -183,8 +181,6 @@ export default function TrainingPreparationPage() {
               <Plus className="w-4 h-4" /> Ajouter un exercice
             </button>
           </div>
-
-          {/* Liste des exercices */}
           <DragDropContext onDragEnd={handleDragEnd}>
             <Droppable droppableId="exerciseList">
               {(provided) => (
@@ -212,8 +208,6 @@ export default function TrainingPreparationPage() {
               )}
             </Droppable>
           </DragDropContext>
-
-          {/* Affichage de la durée totale */}
           {exercises.length > 0 && (
             <p className="text-right text-sm text-gray-600 pt-2">
               Durée totale : {exercises.reduce((sum, e) => sum + Number(e.duration_min || 0), 0)} min
@@ -231,8 +225,6 @@ export default function TrainingPreparationPage() {
           )}
         </div>
 
-
-        {/* Météo */}
         <div className="bg-white p-4 rounded shadow min-h-[300px]">
           <h3 className="font-semibold flex items-center gap-2 mb-2">
             <CloudSun className="w-4 h-4" /> Météo prévue
@@ -242,7 +234,6 @@ export default function TrainingPreparationPage() {
           <p><strong>Température :</strong> {mockWeather.temperature}</p>
         </div>
 
-        {/* Joueurs */}
         <div className="bg-white p-4 rounded shadow min-h-[300px]">
           <h3 className="font-semibold flex items-center gap-2 mb-2">
             <Users className="w-4 h-4" /> Joueurs
@@ -269,10 +260,9 @@ export default function TrainingPreparationPage() {
         </div>
       </div>
 
-      {/* Boutons */}
       <div className="flex justify-end gap-4 mt-6">
         <button
-          onClick={handleExportPDF}
+          onClick={() => alert("Fonction d'export PDF en cours de développement.")}
           className="bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 text-sm flex items-center gap-2"
         >
           <FileDown className="w-4 h-4" /> Exporter PDF

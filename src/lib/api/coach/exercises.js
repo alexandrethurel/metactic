@@ -1,4 +1,4 @@
-import { MOCK_EXERCISES }  from "@/lib/mocks/exercises";
+import { exercises }  from "@/lib/mocks/exercises";
 
 /**
  * Simule un appel réseau avec délai.
@@ -11,7 +11,7 @@ function simulateNetworkDelay(data) {
  * ✅ Récupère tous les exercices.
  */
 export async function fetchAllExercises() {
-  return simulateNetworkDelay(MOCK_EXERCISES);
+  return simulateNetworkDelay(exercises);
 }
 
 /**
@@ -19,7 +19,7 @@ export async function fetchAllExercises() {
  * @param {string} exerciseId
  */
 export async function fetchExerciseById(exerciseId) {
-  const found = MOCK_EXERCISES.find((e) => e.id === exerciseId);
+  const found = exercises.find((e) => e.id === exerciseId);
   if (!found) throw new Error("Exercice introuvable");
   return simulateNetworkDelay(found);
 }

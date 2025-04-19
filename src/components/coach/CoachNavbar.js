@@ -78,7 +78,7 @@ export default function CoachNavbar() {
             {activeMenu === "entrainements" && (
               <div className="absolute top-full mt-2 left-0 bg-white text-[#0B1231] rounded shadow-md w-40 p-2 text-sm">
                 <Link
-                  href="/coach/trainings/preparation"
+                  href="/coach/trainings/preparation/training-1"
                   className="block px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >

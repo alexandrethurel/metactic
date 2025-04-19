@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchAvailablePlayersWithUserInfo } from "@/lib/api/coach/players";
-import PlayerCard from "@/components/coach/trainings/PlayerCard";
+import PlayerCard from "@/components/coach/trainings/preparation/PlayerCard";
 
 export default function AvailablePlayersSection() {
   const [players, setPlayers] = useState([]);

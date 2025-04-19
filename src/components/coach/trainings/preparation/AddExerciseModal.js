@@ -1,6 +1,6 @@
 // components/coach/trainings/AddExerciseModal.jsx
 import { useState } from "react";
-import Modal from "../ui/Modal";
+import Modal from "../../ui/Modal";
 
 export default function AddExerciseModal({ onAdd, onClose }) {
   const [name, setTitle] = useState("");

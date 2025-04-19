@@ -1,5 +1,5 @@
 // components/coach/HelpModal.jsx
-import Modal from "../ui/Modal";
+import Modal from "../../ui/Modal";
 
 export default function HelpModal({ onClose }) {
   return (
