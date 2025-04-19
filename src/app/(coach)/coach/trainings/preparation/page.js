@@ -114,6 +114,7 @@ export default function TrainingPreparationPage() {
           placeholder="Choisir les objectifs..."
           className="text-sm"
           classNamePrefix="select"
+          closeMenuOnSelect={false}
         />
 
         {/* Résumé sélectionné */}
