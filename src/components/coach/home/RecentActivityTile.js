@@ -1,6 +1,8 @@
 // components/coach/home/RecentActivityTile.jsx
 export default function RecentActivityTile() {
   const activities = [
+    { date: "22 avril", type: "Entraînement", label: "Possession de balle", status: "✓ Complet", color: "text-green-600" },
+    { date: "20 avril", type: "Match", label: "VS FC du Pays du Neubourg", status: "❌ Défaite 0-4", color: "text-red-500" },
     { date: "17 avril", type: "Entraînement", label: "Endurance et vitesse", status: "✓ Complet", color: "text-green-600" },
     { date: "16 avril", type: "Match", label: "VS FC Lyon", status: "❌ Défaite 1-3", color: "text-red-500" },
     { date: "15 avril", type: "Entraînement", label: "Tactique 4-3-3", status: "✓ Complet", color: "text-green-600" },

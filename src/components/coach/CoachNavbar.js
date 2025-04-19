@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
+import { User } from "lucide-react";
 
 export default function CoachNavbar() {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -12,7 +13,6 @@ export default function CoachNavbar() {
     setActiveMenu(activeMenu === menu ? null : menu);
   };
 
-  // Fermer si clic en dehors du menu
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (navRef.current && !navRef.current.contains(e.target)) {
@@ -31,13 +31,20 @@ export default function CoachNavbar() {
     >
       <div className="flex justify-between items-center">
         {/* Logo + Nom */}
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80">
           <Image src="/logo.png" alt="Metactic Logo" width={36} height={36} />
           <span className="text-lg font-bold">Metactic</span>
-        </div>
+        </Link>
 
         {/* Liens de menu */}
         <div className="flex gap-6 text-sm relative">
+          {/* Menu Home */}
+          <div>
+            <Link href="/coach" className="hover:text-green-400">
+              Home
+            </Link>
+          </div>
+
           {/* Menu Joueurs */}
           <div className="relative">
             <button onClick={() => toggleMenu("joueurs")} className="hover:text-green-400">
@@ -72,7 +79,7 @@ export default function CoachNavbar() {
 
           {/* Menu Entraînements */}
           <div className="relative">
-            <button onClick={() => toggleMenu("entrainements")} className="hover:text-green-400">
+            <button onClick={() => toggleMenu("entrainements" )} className="hover:text-green-400">
               Entraînements
             </button>
             {activeMenu === "entrainements" && (
@@ -135,8 +142,11 @@ export default function CoachNavbar() {
           </div>
         </div>
 
-        {/* Déconnexion */}
-        <div className="flex gap-2">
+        {/* Déconnexion + Profil */}
+        <div className="flex items-center gap-4">
+          <Link href="/coach/profile" className="hover:text-green-400">
+            <User className="w-5 h-5" />
+          </Link>
           <button className="text-sm border border-white px-4 py-2 rounded hover:bg-white hover:text-[#0B1231]">
             Déconnexion
           </button>

@@ -24,6 +24,7 @@ import InviteConfirmationModal from "@/components/coach/trainings/preparation/In
 import AvailablePlayersList from "@/components/coach/trainings/preparation/AvailablePlayersList";
 import { getTrainingById } from "@/lib/api/coach/trainings";
 import { fetchExerciseById } from "@/lib/api/coach/exercises";
+import { fr } from "date-fns/locale";
 
 const mockWeather = {
   temperature: "17°C",
@@ -116,18 +117,19 @@ export default function TrainingPreparationPage() {
       <h2 className="text-xl font-bold mb-4">Paramètres de la séance</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="bg-white p-4 rounded shadow">
-          <h3 className="font-semibold flex items-center gap-2 mb-2">
-            <CalendarDays className="w-4 h-4" /> Date & Heure
-          </h3>
-          <DatePicker
-            selected={trainingDate}
-            onChange={setTrainingDate}
-            showTimeSelect
-            dateFormat="Pp"
-            timeFormat="HH:mm"
-            timeIntervals={15}
-            className="w-full border px-3 py-2 rounded"
-          />
+        <h3 className="font-semibold flex items-center gap-2 mb-2">
+          <CalendarDays className="w-4 h-4" /> Date & Heure
+        </h3>
+        <DatePicker
+          selected={trainingDate}
+          onChange={setTrainingDate}
+          showTimeSelect
+          dateFormat="Pp"
+          timeFormat="HH:mm"
+          timeIntervals={15}
+          locale={fr}
+          className="w-full border px-3 py-2 rounded"
+        />
         </div>
         <div className="bg-white p-4 rounded shadow">
           <h3 className="font-semibold flex items-center gap-2 mb-2">
