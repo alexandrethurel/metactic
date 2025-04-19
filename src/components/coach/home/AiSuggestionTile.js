@@ -12,7 +12,7 @@ export default function AiSuggestionTile({ onOpenModal }) {
         onClick={onOpenModal}
         className="text-sm bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded flex items-center justify-center gap-2"
       >
-        <Sparkles className="w-4 h-4" /> Générer une séance adaptée
+        <Sparkles className="w-4 h-4" /> Lancer l'analyse
       </button>
     </div>
   );
