@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import AiSessionModal from "@/components/coach/ExerciceCard";
 
 export default function CoachDashboardPage() {
   const [showModal, setShowModal] = useState(false);

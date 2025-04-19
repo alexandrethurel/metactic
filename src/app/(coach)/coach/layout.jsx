@@ -1,6 +1,6 @@
 // app/coach/layout.jsx
 
-import CoachNavbar from "@/components/coach/CoachNavbar";
+import CoachNavbar from "@/components/coach/trainings/CoachNavbar";
 
 export default function CoachLayout({ children }) {
   return (

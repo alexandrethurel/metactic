@@ -2,11 +2,14 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext"; 
+import { simulateLogin } from "@/lib/api/guest/auth";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
+  const { login } = useAuth(); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,15 +19,16 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
-    try {
-      console.log("Login avec:", formData);
 
-      // Ajout du log pour vérifier la redirection
-      console.log("✅ Soumission validée, tentative de redirection vers /coach");
+    try {
+      const user = await simulateLogin(formData.email, formData.password);
+      console.log("Utilisateur connecté :", user);
+
+      login(user); 
 
       router.push("/coach");
     } catch (error) {
-      console.error("Erreur de connexion:", error);
+      console.error("Erreur de connexion:", error.message);
       setErrorMessage("Identifiants invalides. Veuillez réessayer.");
     }
   };
@@ -53,7 +57,7 @@ export default function LoginPage() {
               name="email"
               id="email"
               required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-green-500 focus:border-green-500"
               value={formData.email}
               onChange={handleChange}
             />
@@ -68,7 +72,7 @@ export default function LoginPage() {
               name="password"
               id="password"
               required
-              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500"
+              className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 focus:ring-green-500 focus:border-green-500"
               value={formData.password}
               onChange={handleChange}
             />
