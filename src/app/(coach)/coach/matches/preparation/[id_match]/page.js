@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useParams } from "next/navigation";
 
 import { matches } from "@/lib/mocks/matches";
@@ -14,20 +14,32 @@ import OpponentTile from "@/components/coach/matches/preparation/OpponentTile";
 import LocationTile from "@/components/coach/matches/preparation/LocationTile";
 import FormationTile from "@/components/coach/matches/preparation/FormationTile";
 import PlayersTile from "@/components/coach/matches/preparation/PlayersTile";
+import { Download } from "lucide-react";
 
 export default function PreparationPage() {
   const { id_match } = useParams();
   const match = matches.find((m) => m.id === id_match);
 
   const [assignments, setAssignments] = useState(match.assignments);
-  const [matchDate, setMatchDate] = useState(new Date(match?.date || Date.now()));
+  const [matchDate, setMatchDate] = useState(match ? new Date(match.date) : new Date());
   const [opponent, setOpponent] = useState(match?.opponent || "");
   const [location, setLocation] = useState(match?.location || "");
   const [selectedFormation, setSelectedFormation] = useState(() => {
     return formations.find((f) => f.id === match?.formation_id) || formations[0];
   });
 
-  // Appliquer un fond uniquement sur cette page
+  const formationRef = useRef(null);
+
+  useEffect(() => {
+    if (match) {
+      setMatchDate(new Date(match.date));
+      setOpponent(match.opponent);
+      setLocation(match.location);
+      const f = formations.find((f) => f.id === match.formation_id);
+      if (f) setSelectedFormation(f);
+    }
+  }, [match]);
+
   useEffect(() => {
     const main = document.querySelector("main");
     if (main) {
@@ -35,7 +47,6 @@ export default function PreparationPage() {
     }
   }, []);
 
-  // Réinitialise les positions selon la formation sélectionnée
   useEffect(() => {
     const newPositions = formationPositions.filter(
       (fp) => fp.formation_id === selectedFormation.id
@@ -55,7 +66,7 @@ export default function PreparationPage() {
   }
 
   const positions = useMemo(() => {
-    return formationPositions.filter((fp) => fp.formation_id === selectedFormation.id);
+    return formationPositions.filter((fp) => fp.formation_id === selectedFormation?.id);
   }, [selectedFormation]);
 
   const playersMap = useMemo(() => {
@@ -68,17 +79,14 @@ export default function PreparationPage() {
       const user = usersMap[p.user_id];
       acc[p.id] = {
         ...p,
-        name: user?.call_name || `${user?.first_name || ""} ${user?.last_name || ""}`.trim(),
-        avatarUrl: user?.avatar_url || null,
+        name: user?.call_name || "Inconnu",
+        avatarUrl: user?.avatarUrl || null,
       };
       return acc;
     }, {});
   }, []);
 
-  // Affecte un joueur à une position, via clic ou drag & drop
   const handlePlayerClick = (positionId, forcedPlayerId = null) => {
-    console.log("🔁 Changement demandé sur la position :", positionId);
-
     const usedPlayerIds = Object.values(assignments).filter(Boolean);
 
     const newPlayerId = forcedPlayerId
@@ -98,17 +106,29 @@ export default function PreparationPage() {
 
     if (!newPlayerId) return;
 
-    setAssignments((prev) => ({
-      ...prev,
-      [positionId]: newPlayerId,
-    }));
+    const fromPosition = Object.keys(assignments).find(
+      (key) => assignments[key] === newPlayerId
+    );
+
+    if (fromPosition) {
+      setAssignments((prev) => ({
+        ...prev,
+        [positionId]: newPlayerId,
+        [fromPosition]: prev[positionId],
+      }));
+    } else {
+      setAssignments((prev) => ({
+        ...prev,
+        [positionId]: newPlayerId,
+      }));
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#1c2b2d] text-white p-6 space-y-6 font-sans">
       {/* Bandeau titre */}
       <div className="bg-[#223538] text-center text-lg font-bold py-3 rounded shadow">
-        Préparation du match — <span className="text-green-400">{opponent}</span>
+        Préparation du match - <span className="text-green-400">{opponent}</span>
       </div>
 
       {/* Row 1 : Date / Adversaire / Lieu */}
@@ -118,9 +138,12 @@ export default function PreparationPage() {
         <LocationTile location={location} onChange={setLocation} />
       </div>
 
-      {/* Row 2 : Terrain + Joueurs disponibles */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="md:col-span-2 bg-[#2e4447] p-4 rounded shadow">
+      {/* Row 2 : Formation + Joueurs */}
+      <div className="flex gap-4 items-start">
+        <div
+          className="w-2/3 bg-[#2e4447] p-4 rounded shadow flex flex-col"
+          ref={formationRef}
+        >
           <FormationTile
             formations={formations}
             selectedFormation={selectedFormation}
@@ -131,7 +154,10 @@ export default function PreparationPage() {
             onPlayerClick={handlePlayerClick}
           />
         </div>
-        <div className="bg-[#2e4447] p-4 rounded shadow">
+        <div
+          className="w-1/3 bg-[#2e4447] p-4 rounded shadow flex flex-col overflow-y-auto"
+          style={{ maxHeight: formationRef.current?.offsetHeight || "auto" }}
+        >
           <PlayersTile
             availableIds={match.available_player_ids}
             invitedIds={match.invited_player_ids}
@@ -139,8 +165,11 @@ export default function PreparationPage() {
         </div>
       </div>
 
-      {/* Valider la compo */}
-      <div className="pt-4 flex justify-end">
+      {/* Footer bouton */}
+      <div className="pt-4 flex justify-between items-center">
+        <button className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 shadow">
+          <Download size={16} /> Exporter en PDF
+        </button>
         <button className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 shadow">
           Valider la composition
         </button>

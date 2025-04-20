@@ -1,8 +1,24 @@
 import { Plus, Sparkles } from "lucide-react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
+import dynamic from "next/dynamic";
 import ExerciseCard from "./ExerciseCard";
-import ExercisePickerModal from "./ExercisePickerModal";
-import AddExerciseModal from "./AddExerciseModal";
+
+// Imports dynamiques des modals
+const ExercisePickerModal = dynamic(
+  () => import("./ExercisePickerModal"),
+  {
+    ssr: false,
+    loading: () => <p className="text-sm text-gray-500">Chargement du générateur IA…</p>,
+  }
+);
+
+const AddExerciseModal = dynamic(
+  () => import("./AddExerciseModal"),
+  {
+    ssr: false,
+    loading: () => <p className="text-sm text-gray-500">Chargement du formulaire…</p>,
+  }
+);
 
 export default function TrainingContentTile({
   exercises,
@@ -19,6 +35,7 @@ export default function TrainingContentTile({
   return (
     <div className="bg-white p-4 rounded shadow flex flex-col gap-4 min-h-[300px]">
       <h3 className="font-semibold flex items-center gap-2">📝 Séance du jour</h3>
+
       <div className="flex gap-2">
         <button
           onClick={() => setShowPicker(true)}
@@ -35,6 +52,7 @@ export default function TrainingContentTile({
               </>
           }
         </button>
+
         <button
           onClick={() => setShowAddExerciseModal(true)}
           className="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 text-sm flex items-center justify-center gap-2"

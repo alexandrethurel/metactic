@@ -5,8 +5,17 @@ import TeamTile from "@/components/coach/home/TeamTile";
 import NextTrainingTile from "@/components/coach/home/NextTrainingTile";
 import NextMatchTile from "@/components/coach/home/NextMatchTile";
 import LastTrainingsTile from "@/components/coach/home/RecentActivityTile";
-import AiSuggestionTile from "@/components/coach/home/AiSuggestionTile";
 import RankingTile from "@/components/coach/home/RankingTile";
+
+import dynamic from "next/dynamic";
+
+const AiSuggestionTile = dynamic(
+  () => import("@/components/coach/home/AiSuggestionTile"),
+  {
+    ssr: false,
+    loading: () => <p className="text-sm text-gray-500">Chargement de la tuile IA...</p>,
+  }
+);
 
 export default function CoachDashboardPage() {
   const [showModal, setShowModal] = useState(false);

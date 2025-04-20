@@ -12,12 +12,6 @@ export default function PlayerOnField({
   onClick,
   onDropPlayer,
 }) {
-  // DEBUG
-  console.log("🧩 Rendering PlayerOnField:");
-  console.log("   ↪ player:", player);
-  console.log("   ↪ position:", position);
-  console.log("   ↪ positionId:", position?.id);
-  console.log("   ↪ x/y:", x, y);
 
   if (!player || !position) {
     console.warn("⛔ player or position is missing:", { player, position });
