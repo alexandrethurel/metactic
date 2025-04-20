@@ -28,7 +28,7 @@ export default function NextTrainingTile() {
             onClick={() => setShowModal(true)}
             className="text-sm bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded flex items-center gap-2"
           >
-            <CalendarPlus size={16} /> Programmer une séance
+            <CalendarPlus size={16} /> Préparer une séance
           </button>
         </>
       )}

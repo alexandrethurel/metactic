@@ -2,7 +2,7 @@ export const players = [
     {
       id: "p1",
       user_id: "u1",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "goalkeeper",
       defensive_positioning: 85,
@@ -20,7 +20,7 @@ export const players = [
     {
       id: "p2",
       user_id: "u2",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "left",
       main_position: "goalkeeper",
       defensive_positioning: 88,
@@ -38,7 +38,7 @@ export const players = [
     {
       id: "p3",
       user_id: "u3",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "right_back",
       defensive_positioning: 78,
@@ -56,7 +56,7 @@ export const players = [
     {
       id: "p4",
       user_id: "u4",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "left",
       main_position: "left_back",
       defensive_positioning: 76,
@@ -74,7 +74,7 @@ export const players = [
     {
       id: "p5",
       user_id: "u5",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "both",
       main_position: "goalkeeper",
       defensive_positioning: 70,
@@ -92,7 +92,7 @@ export const players = [
     {
       id: "p6",
       user_id: "u6",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "attacker",
       defensive_positioning: 40,
@@ -110,7 +110,7 @@ export const players = [
     {
       id: "p7",
       user_id: "u7",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "left",
       main_position: "midfielder",
       defensive_positioning: 60,
@@ -128,7 +128,7 @@ export const players = [
     {
       id: "p8",
       user_id: "u8",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "center_back",
       defensive_positioning: 92,
@@ -146,7 +146,7 @@ export const players = [
     {
       id: "p9",
       user_id: "u9",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "both",
       main_position: "attacker",
       defensive_positioning: 50,
@@ -164,7 +164,7 @@ export const players = [
     {
       id: "p10",
       user_id: "u10",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "left_back",
       defensive_positioning: 75,
@@ -182,7 +182,7 @@ export const players = [
     {
       id: "p11",
       user_id: "u11",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "right_back",
       defensive_positioning: 70,
@@ -200,7 +200,7 @@ export const players = [
     {
       id: "p12",
       user_id: "u12",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "left",
       main_position: "goalkeeper",
       defensive_positioning: 80,
@@ -218,7 +218,7 @@ export const players = [
     {
       id: "p13",
       user_id: "u13",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "midfielder",
       defensive_positioning: 68,
@@ -236,7 +236,7 @@ export const players = [
     {
       id: "p14",
       user_id: "u14",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "both",
       main_position: "attacker",
       defensive_positioning: 55,
@@ -254,7 +254,7 @@ export const players = [
     {
       id: "p15",
       user_id: "u15",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "center_back",
       defensive_positioning: 85,
@@ -272,7 +272,7 @@ export const players = [
     {
       id: "p16",
       user_id: "u16",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "left",
       main_position: "midfielder",
       defensive_positioning: 64,
@@ -290,7 +290,7 @@ export const players = [
     {
       id: "p17",
       user_id: "u17",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "attacker",
       defensive_positioning: 45,
@@ -308,7 +308,7 @@ export const players = [
     {
       id: "p18",
       user_id: "u18",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "right_back",
       defensive_positioning: 73,
@@ -326,7 +326,7 @@ export const players = [
     {
       id: "p19",
       user_id: "u19",
-      club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+      club_id: "0",
       preferred_foot: "left",
       main_position: "left_back",
       defensive_positioning: 79,
@@ -344,7 +344,7 @@ export const players = [
     {
       id: "p20",
       user_id: "u20",
-      club_id: "b91cd64b-f542-4233-944e-df0bc2deedb4",
+      club_id: "0",
       preferred_foot: "right",
       main_position: "center_back",
       defensive_positioning: 90,

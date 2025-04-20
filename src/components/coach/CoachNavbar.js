@@ -1,9 +1,11 @@
+// components/coach/home/CoachNavbar.jsx
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { User } from "lucide-react";
+import { User, ChevronRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 export default function CoachNavbar() {
   const [activeMenu, setActiveMenu] = useState(null);
@@ -19,15 +21,17 @@ export default function CoachNavbar() {
         setActiveMenu(null);
       }
     };
-
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   return (
-    <nav
+    <motion.nav
       ref={navRef}
-      className="w-full bg-[#0B1231] text-white py-4 px-6 shadow relative z-50"
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="w-full bg-gradient-to-br from-gray-800 to-gray-900 text-white py-4 px-6 shadow-2xl relative z-50"
     >
       <div className="flex justify-between items-center">
         {/* Logo + Nom */}
@@ -38,103 +42,119 @@ export default function CoachNavbar() {
 
         {/* Liens de menu */}
         <div className="flex gap-6 text-sm relative">
-          {/* Menu Home */}
-          <div>
-            <Link href="/coach" className="hover:text-green-400">
-              Home
-            </Link>
-          </div>
+          {/* Home */}
+          <Link href="/coach" className="hover:text-green-400">
+            Home
+          </Link>
 
-          {/* Menu Joueurs */}
+          {/* Joueurs */}
           <div className="relative">
-            <button onClick={() => toggleMenu("joueurs")} className="hover:text-green-400">
+            <button
+              onClick={() => toggleMenu("joueurs")}
+              className="hover:text-green-400"
+            >
               Joueurs
             </button>
             {activeMenu === "joueurs" && (
               <div className="absolute top-full mt-2 left-0 bg-white text-[#0B1231] rounded shadow-md w-40 p-2 text-sm">
                 <Link
                   href="/coach/players/licenses"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Licences
                 </Link>
                 <Link
                   href="/coach/players/tactics"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Tactique
                 </Link>
                 <Link
                   href="/coach/players/lockerroom"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Vestiaire
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Menu Entraînements */}
+          {/* Entraînements */}
           <div className="relative">
-            <button onClick={() => toggleMenu("entrainements" )} className="hover:text-green-400">
+            <button
+              onClick={() => toggleMenu("entrainements")}
+              className="hover:text-green-400"
+            >
               Entraînements
             </button>
             {activeMenu === "entrainements" && (
               <div className="absolute top-full mt-2 left-0 bg-white text-[#0B1231] rounded shadow-md w-40 p-2 text-sm">
                 <Link
                   href="/coach/trainings/preparation/training-1"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Préparation
                 </Link>
                 <Link
                   href="/coach/trainings/analysis"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Analyse
                 </Link>
                 <Link
                   href="/coach/trainings/history"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Historique
                 </Link>
               </div>
             )}
           </div>
 
-          {/* Menu Matchs */}
+          {/* Matchs */}
           <div className="relative">
-            <button onClick={() => toggleMenu("matchs")} className="hover:text-green-400">
+            <button
+              onClick={() => toggleMenu("matchs")}
+              className="hover:text-green-400"
+            >
               Matchs
             </button>
             {activeMenu === "matchs" && (
               <div className="absolute top-full mt-2 left-0 bg-white text-[#0B1231] rounded shadow-md w-40 p-2 text-sm">
                 <Link
                   href="/coach/matches/preparation"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Préparation
                 </Link>
                 <Link
                   href="/coach/matches/analysis"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Analyse
                 </Link>
                 <Link
                   href="/coach/matches/history"
-                  className="block px-3 py-2 hover:bg-gray-100 rounded"
+                  className="flex items-center gap-2 px-3 py-2 hover:bg-gray-100 rounded"
                   onClick={() => setActiveMenu(null)}
                 >
+                  <ChevronRight className="w-4 h-4 text-gray-500" />
                   Historique
                 </Link>
               </div>
@@ -142,7 +162,7 @@ export default function CoachNavbar() {
           </div>
         </div>
 
-        {/* Déconnexion + Profil */}
+        {/* Profil + Déconnexion */}
         <div className="flex items-center gap-4">
           <Link href="/coach/profile" className="hover:text-green-400">
             <User className="w-5 h-5" />
@@ -152,6 +172,6 @@ export default function CoachNavbar() {
           </button>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
