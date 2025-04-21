@@ -17,8 +17,8 @@ export const matches = [
       id: "match-1",
       club_id: "0",
       date: "2025-04-26T18:00:00Z",
-      location: "Stade Municipal",
-      opponent: "US Villeurbanne",
+      location: "Stade Marcel Guillot",
+      opponent: "FC Pays du Neubourg",
       formation_id: "f1", // "4-3-3 Classique"
       assignments: {
         // formation_position_id : player_id
@@ -47,8 +47,8 @@ export const matches = [
       id: "match-2",
       club_id: "0",
       date: "2025-04-10T18:00:00Z",
-      location: "Stade Jean Bouin",
-      opponent: "US Avranches",
+      location: "Stade Helios Guijarro",
+      opponent: "Jacou Clapiers FA",
       formation_id: "f2",
       assignments: {
         fp1:  "p20", // Gardien
@@ -76,8 +76,8 @@ export const matches = [
       id: "match-3",
       club_id: "0",
       date: "2025-04-01T18:00:00Z",
-      location: "Gymnase Le Hamelet",
-      opponent: "FC Pays du Neubourg",
+      location: "Stade Louis Combettes",
+      opponent: "A.S Celleneuve",
       formation_id: "f2", 
       assignments: {
         fp1:  "p20", // Gardien

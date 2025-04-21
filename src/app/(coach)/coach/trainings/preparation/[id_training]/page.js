@@ -37,7 +37,7 @@ export default function TrainingPreparationPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const [trainingDate, setTrainingDate] = useState(new Date());
-  const [location, setLocation] = useState("Extérieur");
+  const [location, setLocation] = useState("Stade Mathieu Bodmer");
   const [selectedTypes, setSelectedTypes] = useState([]);
 
   const [exercises, setExercises] = useState([]);

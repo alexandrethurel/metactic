@@ -11,8 +11,9 @@ export default function LocationTile({ location, setLocation }) {
         onChange={(e) => setLocation(e.target.value)}
         className="w-full border px-2 py-1 rounded"
       >
-        <option>Extérieur</option>
-        <option>Intérieur</option>
+        <option>Stade Mathieu Bodmer</option>
+        <option>Stade Paul Coudray</option>
+        <option>Gymnase Les Fontenelles</option>
       </select>
     </div>
   );

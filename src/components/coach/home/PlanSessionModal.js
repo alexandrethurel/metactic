@@ -48,7 +48,7 @@ export default function PlanSessionModal({ onClose, onConfirm }) {
 
   const [dateTime, setDateTime] = useState(getNextWednesdayAt20h());
   const [types, setTypes] = useState([]);
-  const [location, setLocation] = useState("Extérieur");
+  const [location, setLocation] = useState("Stade Mathieu Bodmer");
   const [useAiGeneration, setUseAiGeneration] = useState(true);
 
   const formattedDate = dateTime.toLocaleDateString("fr-FR", {
@@ -112,8 +112,9 @@ export default function PlanSessionModal({ onClose, onConfirm }) {
             onChange={(e) => setLocation(e.target.value)}
             className="w-full border px-3 py-2 rounded text-sm"
           >
-            <option>Extérieur</option>
-            <option>Intérieur</option>
+            <option>Stade Mathieu Bodmer</option>
+            <option>Stade Paul Coudray</option>
+            <option>Gymnase Les Fontenelles</option>
           </select>
         </div>
         <div className="flex items-center gap-2 text-sm">

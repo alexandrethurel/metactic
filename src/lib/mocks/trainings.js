@@ -16,7 +16,7 @@ export const trainings = [  {
       "e-cooldown-1", 
       "e-cooldown-2" 
     ],
-    location : "Extérieur",
+    location : "Stade Mathieu Bodmer",
     tags: ["Conservation du ballon"],
     generated_by_ai: true,
     is_favorite: false,
@@ -31,7 +31,7 @@ export const trainings = [  {
     date: "2025-04-23",
     title: "Séance pressing & endurance",
     exercises: [],
-    location : "Extérieur",
+    location : "Stade Mathieu Bodmer",
     generated_by_ai: true,
     is_favorite: false,
     created_at: "2025-04-18T10:15:00Z",
@@ -71,7 +71,7 @@ export const trainings = [  {
       "e-cooldown-1", 
       "e-cooldown-2" 
     ],
-    location : "Extérieur",
+    location : "Stade Mathieu Bodmer",
     tags: ["Conservation du ballon"],
     generated_by_ai: true,
     is_favorite: false,
@@ -96,7 +96,7 @@ export const trainings = [  {
       "e-cooldown-1", 
       "e-cooldown-2" 
     ],
-    location : "Extérieur",
+    location : "Stade Mathieu Bodmer",
     tags: ["Conservation du ballon"],
     generated_by_ai: true,
     is_favorite: false,
