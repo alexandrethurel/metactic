@@ -1,57 +1,6 @@
 // lib/mocks/trainings.js
 
-export const trainings = [
-  {
-    id: "training-1",
-    club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
-    generation_id: "gen-1",
-    date: "2025-04-20",
-    title: "Séance pressing & endurance",
-    exercises: [],
-    location : "Extérieur",
-    generated_by_ai: true,
-    is_favorite: false,
-    created_at: "2025-04-18T10:15:00Z",
-    updated_at: "2025-04-18T10:15:00Z",
-    tags: []
-  },
-  {
-    id: "training-2",
-    club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
-    generation_id: null,
-    date: "2025-04-12",
-    title: "Séance technique du samedi",
-    exercises: ["e4", "e5", "e6"],
-    generated_by_ai: false,
-    is_favorite: true,
-    created_at: "2025-04-12T09:00:00Z",
-    updated_at: "2025-04-12T09:00:00Z"
-  },
-  {
-    id: "training-3",
-    club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
-    generation_id: null,
-    date: "2025-04-10",
-    title: "Préparation match dimanche",
-    exercises: ["e3", "e8", "e9"],
-    generated_by_ai: false,
-    is_favorite: false,
-    created_at: "2025-04-09T15:45:00Z",
-    updated_at: "2025-04-09T15:45:00Z"
-  },
-  {
-    id: "training-4",
-    club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
-    generation_id: "gen-3",
-    date: "2025-04-08",
-    title: "Séance jeu de position",
-    exercises: ["e10", "e11"],
-    generated_by_ai: true,
-    is_favorite: false,
-    created_at: "2025-04-08T08:30:00Z",
-    updated_at: "2025-04-08T08:30:00Z"
-  },
-  {
+export const trainings = [  {
     id: "training-5",
     club_id: "0",
     generation_id: "gen-3",
@@ -72,7 +21,39 @@ export const trainings = [
     generated_by_ai: true,
     is_favorite: false,
     created_at: "2025-04-08T08:30:00Z",
-    updated_at: "2025-04-08T08:30:00Z"
+    updated_at: "2025-04-08T08:30:00Z",
+    self : "/coach/training/trainings/preparation/training-5"
+  },
+  {
+    id: "training-1",
+    club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+    generation_id: "gen-1",
+    date: "2025-04-23",
+    title: "Séance pressing & endurance",
+    exercises: [],
+    location : "Extérieur",
+    generated_by_ai: true,
+    is_favorite: false,
+    created_at: "2025-04-18T10:15:00Z",
+    updated_at: "2025-04-18T10:15:00Z",
+    tags: [],
+    status : "Non-Programmé",
+    self : "/coach/trainings/preparation/training-1"
+  },
+  {
+    id: "training-3",
+    club_id: "e12a35c3-a6b9-4b65-a519-5fdf9e13a23c",
+    generation_id: null,
+    tags: ["Conservation du ballon"],
+    date: "2025-04-10",
+    title: "Préparation match dimanche",
+    exercises: ["e3", "e8", "e9"],
+    generated_by_ai: false,
+    is_favorite: false,
+    created_at: "2025-04-09T15:45:00Z",
+    updated_at: "2025-04-09T15:45:00Z",
+    self : "/coach/trainings/preparation/training-3",
+    status : "Complet",
   },
   {
     id: "training-6",
@@ -95,7 +76,9 @@ export const trainings = [
     generated_by_ai: true,
     is_favorite: false,
     created_at: "2025-04-08T08:30:00Z",
-    updated_at: "2025-04-08T08:30:00Z"
+    updated_at: "2025-04-08T08:30:00Z",
+    self : "/coach/trainings/preparation/training-6",
+    status : "Complet",
   },
   {
     id: "training-7",
@@ -118,7 +101,9 @@ export const trainings = [
     generated_by_ai: true,
     is_favorite: false,
     created_at: "2025-04-08T08:30:00Z",
-    updated_at: "2025-04-08T08:30:00Z"
+    updated_at: "2025-04-08T08:30:00Z",
+    self : "/coach/trainings/preparation/training-7",
+    status : "Complet",
   }
   
 ];

@@ -138,7 +138,7 @@ export const exercises = [
     updated_at: null,
   },
   {
-    id: uuid(),
+    id: "e10",
     name: "Relances rapides",
     description: "Exercice de transition rapide après récupération du ballon.",
     type: "tactical",
@@ -155,7 +155,7 @@ export const exercises = [
     updated_at: null,
   },
   {
-    id: uuid(),
+    id:"e9",
     name: "Jeu de couloir",
     description: "Utilisation des ailes avec dédoublements et centres.",
     type: "tactical",
@@ -172,7 +172,7 @@ export const exercises = [
     updated_at: null,
   },
   {
-    id: uuid(),
+    id: "e3",
     name: "Carré entre les lignes",
     description: "Créer et exploiter les espaces entre les lignes.",
     type: "tactical",
@@ -189,7 +189,7 @@ export const exercises = [
     updated_at: null,
   },
   {
-    id: uuid(),
+    id: "e8",
     name: "Sprint en fractionné",
     description: "Séquences de sprint avec récupération active.",
     type: "physical",

@@ -106,7 +106,22 @@ export default function TrainingPreparationPage() {
 
   return (
     <div className="min-h-screen bg-gray-100 text-[#0B1231] p-6">
-      <h2 className="text-xl font-bold mb-4">Paramètres de la séance</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-xl font-bold">Paramètres de la séance</h2>
+        <div className="flex gap-2">
+          <a
+            href="/rapport_entrainement_metactic_pro.pdf"
+            download="rapport_entrainement_metactic_pro.pdf"
+            className="bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 text-sm flex items-center gap-2"
+          >
+            <FileDown className="w-4 h-4" /> Exporter PDF
+          </a>
+          <button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 text-sm">
+            ✅ Valider la séance
+          </button>
+        </div>
+      </div>
+
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <DatePickerTile
           trainingDate={trainingDate}
@@ -147,18 +162,6 @@ export default function TrainingPreparationPage() {
           showInviteModal={showInviteModal}
           setShowInviteModal={setShowInviteModal}
         />
-      </div>
-
-      <div className="flex justify-end gap-4 mt-6">
-        <button
-          onClick={() => alert("Fonction d'export PDF en cours de développement.")}
-          className="bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 text-sm flex items-center gap-2"
-        >
-          <FileDown className="w-4 h-4" /> Exporter PDF
-        </button>
-        <button className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 text-sm">
-          ✅ Valider la séance
-        </button>
       </div>
     </div>
   );

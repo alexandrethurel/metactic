@@ -1,11 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import TeamTile from "@/components/coach/home/TeamTile";
 import NextTrainingTile from "@/components/coach/home/NextTrainingTile";
 import NextMatchTile from "@/components/coach/home/NextMatchTile";
 import LastTrainingsTile from "@/components/coach/home/RecentActivityTile";
-import RankingTile from "@/components/coach/home/RankingTile";
 
 import dynamic from "next/dynamic";
 
@@ -14,6 +12,14 @@ const AiSuggestionTile = dynamic(
   {
     ssr: false,
     loading: () => <p className="text-sm text-gray-500">Chargement de la tuile IA...</p>,
+  }
+);
+
+const TeamChatTile = dynamic(
+  () => import("@/components/coach/home/TeamChatTile"),
+  {
+    ssr: false,
+    loading: () => <p className="text-sm text-gray-500">Chargement des messages...</p>,
   }
 );
 
@@ -43,10 +49,11 @@ export default function CoachDashboardPage() {
         {/* Colonne droite : 1/3 */}
         <div className="space-y-6">
           <AiSuggestionTile onOpenModal={() => setShowModal(true)} />
-          <RankingTile />
+          <TeamChatTile />
         </div>
       </div>
 
+      {/* Modale IA si affichée */}
       {showModal && <AiSessionModal onClose={() => setShowModal(false)} />}
     </div>
   );

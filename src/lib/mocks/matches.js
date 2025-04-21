@@ -16,7 +16,7 @@ export const matches = [
     {
       id: "match-1",
       club_id: "0",
-      date: "2025-06-20T18:00:00Z",
+      date: "2025-04-26T18:00:00Z",
       location: "Stade Municipal",
       opponent: "US Villeurbanne",
       formation_id: "f1", // "4-3-3 Classique"
@@ -40,12 +40,13 @@ export const matches = [
       available_player_ids: [
         "p4","p5","p6","p7","p8","p9","p10","p11",
         "p12","p13","p14","p15","p16","p17","p18","p19","p20"
-      ]
+      ],
+      self : "/coach/matches/preparation/match-1"
     },
     {
       id: "match-2",
       club_id: "0",
-      date: "2025-06-10T18:00:00Z",
+      date: "2025-04-10T18:00:00Z",
       location: "Stade Jean Bouin",
       opponent: "US Avranches",
       formation_id: "f2",
@@ -68,12 +69,13 @@ export const matches = [
       available_player_ids: [
         "p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11",
         "p12","p13","p14","p15","p16","p17","p18","p19","p20"
-      ]
+      ],
+      self : "/coach/matches/preparation/match-2"
     },
     {
       id: "match-3",
       club_id: "0",
-      date: "2025-06-01T18:00:00Z",
+      date: "2025-04-01T18:00:00Z",
       location: "Gymnase Le Hamelet",
       opponent: "FC Pays du Neubourg",
       formation_id: "f2", 
@@ -96,7 +98,8 @@ export const matches = [
       available_player_ids: [
         "p1","p2","p3","p4","p5","p6","p7","p8","p9","p10","p11",
         "p12","p13","p14","p15","p16","p17","p18","p19","p20"
-      ]
+      ],
+      self : "/coach/matches/preparation/match-3"
     }
   ];
   

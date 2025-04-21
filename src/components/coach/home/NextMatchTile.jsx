@@ -1,9 +1,9 @@
 export default function NextMatchTile() {
     const match = {
-      opponent: "FC Lyon",
-      date: "Samedi 22 avril",
+      opponent: "US Villeurbane",
+      date: "Samedi 26 avril",
       hour: "15h00",
-      location: "Stade Jean Bouin",
+      location: "Stade Boiron-Granger",
     };
   
     return (
