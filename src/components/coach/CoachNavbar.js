@@ -37,7 +37,7 @@ export default function CoachNavbar() {
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.4 }}
-        className="w-full bg-gradient-to-br from-gray-800 to-gray-900 text-white py-4 px-6 shadow-2xl fixed top-0 left-0 z-50"
+        className="w-full bg-gradient-to-br from-gray-800 to-gray-900 text-white py-4 px-6 fixed top-0 left-0 z-50"
       >
         <div className="flex justify-between items-center">
           <Link href="/" className="flex items-center gap-2 hover:opacity-80">
@@ -46,7 +46,7 @@ export default function CoachNavbar() {
           </Link>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex gap-12 text-sm items-center relative">
+          <div className="hidden md:flex gap-20 text-base items-center relative">
             <Link href="/coach" className="hover:text-green-400">Accueil</Link>
 
             <div className="relative">
@@ -134,7 +134,7 @@ export default function CoachNavbar() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed top-0 right-0 w-72 h-screen bg-gray-900 text-white p-6 z-40 shadow-lg"
+            className="fixed top-3 right-0 w-72 h-screen bg-gray-900 text-white p-6 z-40 shadow-lg"
           >
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center gap-2">
@@ -157,13 +157,13 @@ export default function CoachNavbar() {
                 ["/coach/profile", "Profil"],
               ].map(([href, label]) => (
                 <li key={href} className="flex items-center gap-2">
-                  <ChevronDown size={14} />
+                  <ChevronRight size={14} />
                   <Link href={href} onClick={closeMenus}>{label}</Link>
                 </li>
               ))}
               <hr className="border-gray-600 my-2" />
               <li className="flex items-center gap-2">
-                <ChevronDown size={14} />
+                <ChevronRight size={14} />
                 <button onClick={closeMenus} className="text-left w-full">Déconnexion</button>
               </li>
             </ul>

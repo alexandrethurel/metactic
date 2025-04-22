@@ -16,7 +16,7 @@ export default function DatePickerTile({ trainingDate, setTrainingDate }) {
         timeFormat="HH:mm"
         timeIntervals={15}
         locale={fr}
-        className="w-full border px-3 py-2 rounded"
+        className="w-full border px-3 py-2 rounded border-gray-400"
       />
     </div>
   );

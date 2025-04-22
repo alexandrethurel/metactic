@@ -50,7 +50,7 @@ export default function LandingNavbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-10 text-sm">
+          <div className="hidden md:flex gap-20 text-base">
             {desktopMenus.map(({ label, menu }) => (
               <div key={label} className="relative">
                 <button
@@ -117,16 +117,16 @@ export default function LandingNavbar() {
                 key={label}
                 href="#"
                 onClick={() => setIsMobileOpen(false)}
-                className="block hover:text-green-400"
+                className="block hover:text-green-400 text-white"
               >
                 {label}
               </Link>
             ))}
             <hr className="border-gray-700" />
-            <Link href="/login" onClick={() => setIsMobileOpen(false)} className="block hover:text-green-400">
+            <Link href="/login" onClick={() => setIsMobileOpen(false)} className="block hover:text-green-400 text-white">
               Connexion
             </Link>
-            <Link href="/signup" onClick={() => setIsMobileOpen(false)} className="block hover:text-green-400">
+            <Link href="/signup" onClick={() => setIsMobileOpen(false)} className="block hover:text-green-400 text-white">
               Inscrire mon équipe
             </Link>
           </motion.div>
