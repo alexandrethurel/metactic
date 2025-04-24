@@ -111,8 +111,8 @@ export default function TrainingPreparationPage() {
 
         <div className="flex flex-col sm:flex-row gap-2">
           <a
-            href="/rapport_entrainement_metactic_pro.pdf"
-            download="rapport_entrainement_metactic_pro.pdf"
+            href="/rapport_entrainement_24_04_2025.pdf"
+            download="rapport_entrainement_24_04_2025.pdf"
             className="bg-gray-200 text-gray-700 py-2 px-4 rounded hover:bg-gray-300 text-sm flex items-center justify-center gap-2"
           >
             <FileDown className="w-4 h-4" /> Exporter PDF

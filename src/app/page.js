@@ -33,7 +33,7 @@ export default function LandingPage() {
       <div className="w-full md:w-1/2 mt-10 md:mt-0 flex justify-center">
         <img
           src="/phone-mockup.png"
-          alt="App Screenshot"
+          alt=""
           className="w-[280px] md:w-[360px] lg:w-[400px] drop-shadow-xl"
         />
       </div>

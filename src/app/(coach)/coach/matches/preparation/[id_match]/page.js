@@ -114,7 +114,7 @@ export default function PreparationPage() {
             </div>
           </div>
           <a
-            href="/rapport_match_metactic_pro.pdf"
+            href="/rapport_entrainement_24_04_2025.pdf"
             download
             className="flex items-center gap-2 bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700 shadow"
           >
